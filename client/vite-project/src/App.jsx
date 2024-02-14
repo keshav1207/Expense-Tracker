@@ -1,4 +1,5 @@
 import DonutChart from "./components/DonutChart"
+import Label from "./components/Label"
 function App() {
   
   return (
@@ -10,6 +11,11 @@ function App() {
     <div className="chart-container">
     <DonutChart/>
     </div>
+
+    <div className="label-container">
+    <Label/>
+    </div>
+    
    
 
 

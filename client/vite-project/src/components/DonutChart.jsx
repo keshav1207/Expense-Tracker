@@ -8,18 +8,24 @@ Chart.register(ArcElement);
   const config = {
     data: {
         datasets: [{
-        data: [300, 50, 100],
+        data: [10, 10, 10, 10, 10, 10, 10, 10],
         backgroundColor: [
-          'rgb(255, 99, 132)',
-          'rgb(54, 162, 235)',
-          'rgb(255, 205, 86)'
+          'red',
+          'blue',
+          'yellow',
+          'green',
+          'orange',
+          'purple',
+          'indigo',
+          'pink'
+
         ],
-        hoverOffset: 4,
-        spacing: 5
+        hoverOffset: 3,
+        spacing: 20
       }]},
 
       options: {
-       cutout:180,
+       cutout:200,
       
       }
     };

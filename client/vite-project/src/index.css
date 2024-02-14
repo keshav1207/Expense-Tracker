@@ -21,12 +21,21 @@ body {
 
 }
 
-.chart-container{
+.chart-container, .label-container{
   position: relative;
   margin: 1rem;
-  margin-left: 6rem;
+  margin-left: 10rem;
   width: 500px;
 }
+
+.label-container{
+  display: grid;
+  grid-template-columns: 1fr ;
+  
+  
+}
+
+
 
 .total-container{
   display: flex;
@@ -40,6 +49,18 @@ body {
   top: 40%;
   font-size: 2rem;
   
+}
+
+
+.label{
+  display: flex;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.label-colour{
+  width: 20px;
+  height: auto;
 }
 
 
