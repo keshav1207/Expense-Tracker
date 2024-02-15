@@ -2,7 +2,7 @@
 export default function Label(){
     const data = {
         Rent: {colour:'red', amount: 10} ,
-        EatingOut:{colour:'blue', amount: 10} ,
+        Eating_Out:{colour:'blue', amount: 10} ,
         Transport: {colour:'yellow', amount: 10} ,
         Utilities: {colour:'green', amount: 10} ,
         Mobile: {colour:'orange', amount: 10} ,
