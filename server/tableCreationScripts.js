@@ -27,3 +27,13 @@ connection.connect(function(err) {
     colour VARCHAR(30),
 
   )`;
+
+    //Add code to create  expenseTransaction table
+    const createExpenseTransactionQuery = `CREATE TABLE expenseTransaction(
+      name VARCHAR(30),
+      amount DECIMAL(10, 2),
+      category   INT,
+      date  DATE,
+      
+      FOREIGN KEY(category)  REFERENCES  expenseCategory(id)
+    )`;
