@@ -28,6 +28,21 @@ connection.connect(function(err) {
 
   )`;
 
+
+  //Add code to populate the expenseCategory table
+  const createExpenseCategories = `
+  INSERT INTO expenseCategory 
+  VALUES
+  ('Rent','red'),
+  ('Eating-out','blue'),
+  ('Transport','yellow'),
+  ('Utilities','green'),
+  ('Mobile-Phone','orange'),
+  ('Groceries','purple'),
+  ('Fitness','indigo'),
+  ('Shopping','pink')
+  `
+
     //Add code to create  expenseTransaction table
     const createExpenseTransactionQuery = `CREATE TABLE expenseTransaction(
       name VARCHAR(30),
