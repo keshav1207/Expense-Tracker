@@ -20,8 +20,10 @@ connection.connect(function(err) {
   });
 
 
+
+
   //Add code to create  expenseCategory table
-  const createExpenseCategoryQuery = `CREATE TABLE expenseCategory(
+  const createExpenseCategoryTable = `CREATE TABLE expenseCategory(
     id INT PRIMARY KEY  AUTO_INCREMENT,
     name VARCHAR(30),
     colour VARCHAR(30)
@@ -30,10 +32,10 @@ connection.connect(function(err) {
 
 
 
-  //Function  to populate the expenseCategory table
-  function populateExpenseCategories(){
-    const populateExpenseCategories = `
-  INSERT INTO expenseCategory 
+  // Code to Populate the expenseCategory table
+  
+    const populateExpenseCategoryTable = `
+  INSERT INTO expenseCategory (name,colour)
   VALUES
   ('Rent','red'),
   ('Eating-out','blue'),
@@ -45,15 +47,23 @@ connection.connect(function(err) {
   ('Shopping','pink')
 
   `
-  }
+  
 
 
   // Execute code to create  category table
 
-  connection.query(createExpenseCategoryQuery,(err,results)=>{
+  connection.query(createExpenseCategoryTable,(err,results)=>{
     if(err) throw err;
     console.log(results);
-    populateExpenseCategories();
+    
+  });
+
+  // Execute code to populate category table
+
+  connection.query(populateExpenseCategoryTable,(err,results)=>{
+    if(err) throw err;
+    console.log(results);
+    
   });
   
 
@@ -62,7 +72,7 @@ connection.connect(function(err) {
  
 
     //Add code to create  expenseTransaction table
-    const createExpenseTransactionQuery = `CREATE TABLE expenseTransaction(
+    const createExpenseTransactionTable = `CREATE TABLE expenseTransaction(
       name VARCHAR(30),
       amount DECIMAL(10, 2),
       category   INT,
@@ -74,7 +84,7 @@ connection.connect(function(err) {
 
      // Execute code to create transaction table
 
-  connection.query(createExpenseTransactionQuery,(err,results)=>{
+  connection.query(createExpenseTransactionTable,(err,results)=>{
     if(err) throw err;
     console.log(results);
   });
