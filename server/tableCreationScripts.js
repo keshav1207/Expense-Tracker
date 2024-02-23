@@ -28,9 +28,16 @@ connection.connect(function(err) {
 
   )`;
 
+  // Execute code to create  category table
+
+  connection.query(createExpenseCategoryQuery,(err,results)=>{
+    if(err) throw err;
+    console.log(results);
+  });
+
 
   //Add code to populate the expenseCategory table
-  const createExpenseCategories = `
+  const populateExpenseCategories = `
   INSERT INTO expenseCategory 
   VALUES
   ('Rent','red'),
@@ -41,7 +48,17 @@ connection.connect(function(err) {
   ('Groceries','purple'),
   ('Fitness','indigo'),
   ('Shopping','pink')
+
   `
+
+
+
+   // Execute code to populate table
+
+  connection.query(populateExpenseCategories,(err,results)=>{
+    if(err) throw err;
+    console.log(results);
+  });
 
     //Add code to create  expenseTransaction table
     const createExpenseTransactionQuery = `CREATE TABLE expenseTransaction(
@@ -52,3 +69,23 @@ connection.connect(function(err) {
       
       FOREIGN KEY(category)  REFERENCES  expenseCategory(id)
     )`;
+
+
+     // Execute code to create transaction table
+
+  connection.query(createExpenseTransactionQuery,(err,results)=>{
+    if(err) throw err;
+    console.log(results);
+  });
+
+
+
+  //End connection
+
+  connection.end((err) => {
+  if (err) {
+    console.error('Error closing database connection: ' + err.stack);
+    return;
+  }
+  console.log('Database connection closed.');
+});
