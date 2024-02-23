@@ -1,4 +1,4 @@
-const connection = require('./config/connect');
+const connection = require ('./config/connect');
 
 //Connecting to Mysql database
 connection.connect(function(err) {
@@ -24,20 +24,15 @@ connection.connect(function(err) {
   const createExpenseCategoryQuery = `CREATE TABLE expenseCategory(
     id INT PRIMARY KEY  AUTO_INCREMENT,
     name VARCHAR(30),
-    colour VARCHAR(30),
+    colour VARCHAR(30)
 
   )`;
 
-  // Execute code to create  category table
-
-  connection.query(createExpenseCategoryQuery,(err,results)=>{
-    if(err) throw err;
-    console.log(results);
-  });
 
 
-  //Add code to populate the expenseCategory table
-  const populateExpenseCategories = `
+  //Function  to populate the expenseCategory table
+  function populateExpenseCategories(){
+    const populateExpenseCategories = `
   INSERT INTO expenseCategory 
   VALUES
   ('Rent','red'),
@@ -50,15 +45,21 @@ connection.connect(function(err) {
   ('Shopping','pink')
 
   `
+  }
 
 
+  // Execute code to create  category table
 
-   // Execute code to populate table
-
-  connection.query(populateExpenseCategories,(err,results)=>{
+  connection.query(createExpenseCategoryQuery,(err,results)=>{
     if(err) throw err;
     console.log(results);
+    populateExpenseCategories();
   });
+  
+
+
+
+ 
 
     //Add code to create  expenseTransaction table
     const createExpenseTransactionQuery = `CREATE TABLE expenseTransaction(
