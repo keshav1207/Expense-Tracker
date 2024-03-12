@@ -3,6 +3,8 @@ const router = express.Router();
 const controller = require("../controllers/controller");
 
 
-router.route('/').get(controller.create_Categories);
+router.route('/createCategory').post(controller.createCategory);
+router.route('/getCategory').get(controller.getCategory);
+router.route('/deleteCategory').delete(controller.deleteCategory);
 
 module.exports = router;
