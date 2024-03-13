@@ -95,21 +95,84 @@ function deleteCategory(req,res){
 
 }
 
-
+// Create  a new transaction
 function createTransaction(req,res){
-    
+  const {name, amount, category, date} = req.body;
+
+  // Validate input
+  if (!name || !amount||!category|!date){
+   return res.status(400).json({ error: 'Name, Amount, Date and colour are required' });
+ }
+ 
+   connection.connect(function(err) {
+     if (err) {
+       console.error('Error executing query:', err);
+       return res.status(500).json({ error: 'Internal server error' });
+   }
+     connection.query('INSERT INTO expenseTransaction (name, amount, category, date) VALUES (?, ?, ?, ?)',[name, amount, category, date], function (err, result, fields) {
+       if (err) {
+         console.error('Error executing query:', err);
+         return res.status(500).json({ error: 'Internal server error' });
+     }
+       console.log(result);
+       res.send(result);
+     });
+   }); 
 
 }
 
 
 function getTransaction(req,res){
-    
+    const {transactionId} = req.body;
+
+     // Validate input
+  if (!transactionId) {
+    return res.status(400).json({ error: 'Transaction Id required' });
+    }
+
+    connection.connect(function(err) {
+      if (err) {
+        console.error('Error executing query:', err);
+        return res.status(500).json({ error: 'Internal server error' });
+    }
+      connection.query('SELECT * FROM expenseTransaction  WHERE id = ?',[transactionId], function (err, result, fields) {
+        if (err) {
+          console.error('Error executing query:', err);
+          return res.status(500).json({ error: 'Internal server error' });
+      }
+        console.log(result);
+        res.send(result);
+      });
+    });
 
 }
 
 
 
 function deleteTransaction(req,res){
+
+  const {transactionId} = req.body;
+
+     // Validate input
+  if (!transactionId) {
+    return res.status(400).json({ error: 'Transaction Id required' });
+    }
+
+    connection.connect(function(err) {
+      if (err) {
+        console.error('Error executing query:', err);
+        return res.status(500).json({ error: 'Internal server error' });
+    }
+      connection.query('DELETE FROM expenseTransaction  WHERE id = ?',[transactionId], function (err, result, fields) {
+        if (err) {
+          console.error('Error executing query:', err);
+          return res.status(500).json({ error: 'Internal server error' });
+      }
+        console.log(result);
+        res.send(result);
+      });
+    });
+
     
 
 }

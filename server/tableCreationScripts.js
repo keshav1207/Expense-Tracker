@@ -73,6 +73,7 @@ connection.connect(function(err) {
 
     //Add code to create  expenseTransaction table
     const createExpenseTransactionTable = `CREATE TABLE expenseTransaction(
+      id INT PRIMARY KEY  AUTO_INCREMENT,
       name VARCHAR(30),
       amount DECIMAL(10, 2),
       category   INT,
