@@ -20,7 +20,27 @@ connection.connect(function(err) {
   });
 
 
-//Get Category name
+//Get all Categories 
+function getAllCategories(req,res){
+  
+  connection.connect(function(err) {
+    if (err) {
+      console.error('Error executing query:', err);
+      return res.status(500).json({ error: 'Internal server error' });
+  }
+    connection.query('SELECT * FROM expenseCategory',function (err, result, fields) {
+      if (err) {
+        console.error('Error executing query:', err);
+        return res.status(500).json({ error: 'Internal server error' });
+    }
+      console.log(result);
+      res.send(result);
+    });
+  });
+}
+
+
+//Get a  specific Category 
 function getCategory(req,res){
     const {name} = req.body;
 
@@ -95,6 +115,27 @@ function deleteCategory(req,res){
 
 }
 
+//Get all transactions
+function getAllTransactions(req,res){
+
+  connection.connect(function(err) {
+    if (err) {
+      console.error('Error executing query:', err);
+      return res.status(500).json({ error: 'Internal server error' });
+  }
+    connection.query('SELECT * FROM expenseTransaction', function (err, result, fields) {
+      if (err) {
+        console.error('Error executing query:', err);
+        return res.status(500).json({ error: 'Internal server error' });
+    }
+      console.log(result);
+      res.send(result);
+    });
+  });
+
+}
+
+
 // Create  a new transaction
 function createTransaction(req,res){
   const {name, amount, category, date} = req.body;
@@ -121,7 +162,7 @@ function createTransaction(req,res){
 
 }
 
-
+// Get a  specific transaction
 function getTransaction(req,res){
     const {transactionId} = req.body;
 
@@ -147,7 +188,7 @@ function getTransaction(req,res){
 
 }
 
-
+// Delete a transaction
 
 function deleteTransaction(req,res){
 
@@ -183,6 +224,8 @@ module.exports = {
     createCategory,
     getCategory,
     deleteCategory,
+    getAllCategories,
+    getAllTransactions,
     getTransaction,
     createTransaction,
     deleteTransaction
