@@ -1,5 +1,7 @@
 import {useForm} from 'react-hook-form';
 import { useCreateTransactionMutation } from '../redux/api';
+import {  toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 export default function CreateExpenseForm(){
@@ -9,10 +11,22 @@ export default function CreateExpenseForm(){
 
     const {register,handleSubmit,reset} = useForm();
     const onSubmit = async (formData)=>{
-        console.log(formData);
         if(formData){
+        try {
+            console.log(formData);
             const data = await createTransaction(formData).unwrap();
             console.log(data);
+            toast.success("Transaction Created Successfully!", {
+                position: "top-center",
+              });
+           
+        } catch (error) {
+            console.error('Failed to create transaction:', error);
+            toast.error("Error! Please try again", {
+                position: "top-center",
+              });
+        }
+            
         }
        
         reset();

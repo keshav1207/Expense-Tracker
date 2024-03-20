@@ -1,10 +1,13 @@
 import DonutChart from "./components/DonutChart"
 import Label from "./components/Label"
 import CreateExpenseForm from "./components/CreateExpenseForm"
+import { ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function App() {
   
   return (
     <>
+    <ToastContainer/>
     <div className="header-container">
     <div>Expense Tracker</div>
     </div>
