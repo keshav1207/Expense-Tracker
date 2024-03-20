@@ -1,10 +1,21 @@
 import {useForm} from 'react-hook-form';
+import { useCreateTransactionMutation } from '../redux/api';
 
 
 export default function CreateExpenseForm(){
-    const {register,handleSubmit,resetField} = useForm();
-    const onSubmit = (data)=>{
-        console.log(data);
+    const [createTransaction] = useCreateTransactionMutation();
+    
+
+
+    const {register,handleSubmit,reset} = useForm();
+    const onSubmit = async (formData)=>{
+        console.log(formData);
+        if(formData){
+            const data = await createTransaction(formData).unwrap();
+            console.log(data);
+        }
+       
+        reset();
     }
     return(
         
@@ -12,15 +23,15 @@ export default function CreateExpenseForm(){
 
             
             <input type="text" placeholder="Rent, Gym membership, Presto top up"  {...register('name')} />
-            <select {...register('type')}>
-                <option value="Rent">Rent</option>
-                <option value="Eating-out">Eating-out</option>
-                <option value="Transport">Transport</option>
-                <option value="Utilities">Utilities</option>
-                <option value="Mobile-Phone">Mobile Phone</option>
-                <option value="Groceries">Groceries</option>
-                <option value="Fitness">Fitness</option>
-                <option value="Shopping">Shopping</option>
+            <select {...register('category')}>
+                <option value= "1">Rent</option>
+                <option value="2">Eating-out</option>
+                <option value="3">Transport</option>
+                <option value="4">Utilities</option>
+                <option value="5">Mobile Phone</option>
+                <option value="6">Groceries</option>
+                <option value="7">Fitness</option>
+                <option value="8">Shopping</option>
             </select>
             <input type="text" placeholder="$200" {...register('amount')} />
             <input type="date" {...register('date')} />
