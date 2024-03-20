@@ -103,4 +103,15 @@ body {
   border-radius: 1rem;
 }
 
+.history-btn button{
+  text-align: center;
+  background-color: black;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 1rem;
+  margin-left: 5rem;
+  padding: 1.5rem;
+}
+
 

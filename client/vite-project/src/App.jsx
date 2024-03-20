@@ -16,19 +16,19 @@ function App() {
 
     <div className="form-container">
       <CreateExpenseForm/>
+      <div className="history-btn">
+      <button> Go to Transaction History Page</button>
     </div>
     </div>
+    </div>
+
+    
+
     
 
     <div className="label-container">
     <Label/>
     </div>
-
-
-    
-    
-   
-
 
   
     </>
