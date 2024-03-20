@@ -142,7 +142,7 @@ function createTransaction(req,res){
 
   // Validate input
   if (!name || !amount||!category|!date){
-   return res.status(400).json({ error: 'Name, Amount, Date and colour are required' });
+   return res.status(400).json({ error: 'Name, Amount, Date and Category are required' });
  }
  
    connection.connect(function(err) {
