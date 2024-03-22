@@ -3,6 +3,7 @@ import Label from "../components/Label"
 import CreateExpenseForm from "../components/CreateExpenseForm"
 import { ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Link } from "react-router-dom";
 
 export default function HomePage() {
   
@@ -21,7 +22,7 @@ export default function HomePage() {
     <div className="form-container">
       <CreateExpenseForm/>
       <div className="history-btn">
-      <button> Go to Transaction History Page</button>
+      <Link to={"/history"}><button> Go to Transaction History Page</button></Link>
     </div>
     </div>
     </div>
