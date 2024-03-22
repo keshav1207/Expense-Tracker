@@ -1,9 +1,10 @@
-import DonutChart from "./components/DonutChart"
-import Label from "./components/Label"
-import CreateExpenseForm from "./components/CreateExpenseForm"
+import DonutChart from "../components/DonutChart"
+import Label from "../components/Label"
+import CreateExpenseForm from "../components/CreateExpenseForm"
 import { ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-function App() {
+
+export default function HomePage() {
   
   return (
     <>
@@ -38,4 +39,3 @@ function App() {
   )
 }
 
-export default App
