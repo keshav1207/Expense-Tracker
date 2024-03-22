@@ -218,6 +218,59 @@ function deleteTransaction(req,res){
 
 }
 
+// Update a transaction
+function updateTransaction(req,res){
+
+
+  const transactionId = req.params.transactionId;
+  const updates = req.body;
+
+     // Validate input
+  if (!transactionId) {
+    return res.status(400).json({ error: 'Transaction Id required' });
+    }
+
+    let updateQuery = `UPDATE expenseTransaction SET `
+    let updateValues = [];
+
+  // The following isLast variable is used so that we don't add a comma after the last column we want to update
+    let isLast = true;
+    Object.keys(updates).forEach((key) => {
+      if (updates[key]) {
+        if(!isLast){
+          updateQuery += `,`
+        }
+        updateQuery += `${key} = ?`;
+        updateValues.push(updates[key]);
+        isLast = false;
+
+      }
+    });
+
+    updateQuery += ` WHERE id = ?`
+    updateValues.push(transactionId);
+
+    console.log(updateQuery,updateValues);
+
+
+    connection.connect(function(err) {
+      if (err) {
+        console.error('Error executing query:', err);
+        return res.status(500).json({ error: 'Internal server error' });
+    }
+      connection.query(updateQuery,updateValues, function (err, result, fields) {
+        if (err) {
+          console.error('Error executing query:', err);
+          return res.status(500).json({ error: 'Internal server error' });
+      }
+        console.log(result);
+        res.send(result);
+      });
+    });
+
+}
+
+
 
 
 module.exports = {
@@ -228,6 +281,7 @@ module.exports = {
     getAllTransactions,
     getTransaction,
     createTransaction,
-    deleteTransaction
+    deleteTransaction,
+    updateTransaction
 
 }
