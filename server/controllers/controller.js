@@ -123,7 +123,7 @@ function getAllTransactions(req,res){
       console.error('Error executing query:', err);
       return res.status(500).json({ error: 'Internal server error' });
   }
-    connection.query('SELECT * FROM expenseTransaction', function (err, result, fields) {
+    connection.query('SELECT expenseTransaction.*, expenseCategory.name AS Category_Name FROM expenseTransaction JOIN expenseCategory ON expenseTransaction.category = expenseCategory.id; ', function (err, result, fields) {
       if (err) {
         console.error('Error executing query:', err);
         return res.status(500).json({ error: 'Internal server error' });
