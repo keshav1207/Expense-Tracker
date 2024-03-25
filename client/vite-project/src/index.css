@@ -8,6 +8,7 @@ body {
   font-family: "Bayon", sans-serif;
   font-weight: 400;
   font-style: normal;
+
 }
 
 .header-container{
@@ -112,6 +113,45 @@ body {
   border-radius: 1rem;
   margin-left: 5rem;
   padding: 1.5rem;
+}
+
+
+.table-container{
+width: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+margin-top: 2rem;
+  
+}
+
+caption{
+  margin-bottom: 1rem;
+}
+
+table{
+  font-size: 2rem;
+  border-collapse: collapse;
+  
+}
+
+
+
+thead{
+  background-color: red;
+  text-align: left;
+}
+
+thead tr{
+  color: white;
+}
+
+tbody tr{
+  padding: 1rem;
+}
+
+th, td {
+  padding: 1rem;
 }
 
 
