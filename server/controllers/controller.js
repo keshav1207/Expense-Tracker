@@ -192,7 +192,7 @@ function getTransaction(req,res){
 
 function deleteTransaction(req,res){
 
-  const {transactionId} = req.body;
+  const transactionId = req.params.transactionId;
 
      // Validate input
   if (!transactionId) {
