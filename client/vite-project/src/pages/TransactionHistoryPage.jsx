@@ -1,6 +1,8 @@
 import { useGetAllTransactionsQuery } from "../redux/api"
 import { MdDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
+import { FaHome } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 
 export default function TransactionHistoryPage(){
@@ -13,6 +15,12 @@ export default function TransactionHistoryPage(){
 
     return(
         <>
+
+        <div className="home">
+          <Link to={"/"}>< FaHome id="home-icon"/></Link>
+        
+        </div>
+
         <div className="table-container">
 
         <table>
