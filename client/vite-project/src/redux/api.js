@@ -58,10 +58,10 @@ export const expenseTrackerApi = createApi({
     }),
 
     deleteTransaction: builder.mutation({
-      query: (userData) => ({
-        url: 'deleteTransaction',
-        method:'DELETE',
-        body: userData,
+      query: (id) => ({
+        url: `deleteTransaction/${id}`,
+        method:'DELETE'
+       
       }),
 
       invalidatesTags: ['Post'],
