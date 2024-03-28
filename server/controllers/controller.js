@@ -164,7 +164,7 @@ function createTransaction(req,res){
 
 // Get a  specific transaction
 function getTransaction(req,res){
-    const {transactionId} = req.body;
+  const transactionId = req.params.transactionId;
 
      // Validate input
   if (!transactionId) {
