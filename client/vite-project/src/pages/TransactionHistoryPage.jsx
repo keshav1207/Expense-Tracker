@@ -42,6 +42,7 @@ export default function TransactionHistoryPage(){
     return(
         <>
         <ToastContainer/>
+        <div id="overlay"></div>
         <div className="home">
           <Link to={"/"}>< FaHome id="home-icon"/></Link>
         
