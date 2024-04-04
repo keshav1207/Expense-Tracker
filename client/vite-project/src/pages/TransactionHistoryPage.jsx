@@ -6,11 +6,13 @@ import { Link } from "react-router-dom";
 import { useDeleteTransactionMutation } from "../redux/api";
 import {  toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useState } from "react";
 
 
 export default function TransactionHistoryPage(){
     const{data, isLoading} = useGetAllTransactionsQuery();
     const [DeleteTransaction] = useDeleteTransactionMutation();
+    const [modal, showModal] = useState(false);
 
 
   if (isLoading) return <div>Loading...</div>
@@ -42,7 +44,7 @@ export default function TransactionHistoryPage(){
     return(
         <>
         <ToastContainer/>
-        <div id="overlay"></div>
+        {modal && <div className="overlay"></div> }
         <div className="home">
           <Link to={"/"}>< FaHome id="home-icon"/></Link>
         
