@@ -7,6 +7,7 @@ import { useDeleteTransactionMutation } from "../redux/api";
 import {  toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
+import EditExpenseForm from "../components/EditExpenseForm";
 
 
 export default function TransactionHistoryPage(){
@@ -44,7 +45,7 @@ export default function TransactionHistoryPage(){
     return(
         <>
         <ToastContainer/>
-        {modal && <div className="overlay"></div> }
+        {modal && <div className="overlay"> <EditExpenseForm/></div> }
         <div className="home">
           <Link to={"/"}>< FaHome id="home-icon"/></Link>
         
