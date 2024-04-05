@@ -13,7 +13,14 @@ import EditExpenseForm from "../components/EditExpenseForm";
 export default function TransactionHistoryPage(){
     const{data, isLoading} = useGetAllTransactionsQuery();
     const [DeleteTransaction] = useDeleteTransactionMutation();
-    const [modal, showModal] = useState(false);
+    const [modal, setModal] = useState(false);
+
+
+
+  function toggleModal(){
+    setModal(!modal);
+  }
+
 
 
   if (isLoading) return <div>Loading...</div>
@@ -42,10 +49,14 @@ export default function TransactionHistoryPage(){
     
   }
 
+  async function handleEdit(id){
+    setModal(true);
+  }
+
     return(
         <>
         <ToastContainer/>
-        {modal && <div className="overlay"> <EditExpenseForm/></div> }
+        {modal && <div className="overlay"> <EditExpenseForm  modal={modal} toggleModal={toggleModal}/></div> }
         <div className="home">
           <Link to={"/"}>< FaHome id="home-icon"/></Link>
         
@@ -85,7 +96,7 @@ export default function TransactionHistoryPage(){
           {/* Extra formatting for date received from sql  */}
           <td data-title = "Date">{new Date(item.date).toLocaleDateString()}</td>   
          <td data-title = "Delete-Icon" onClick={()=> handleDelete(item.id)}><MdDelete /></td> 
-         <td data-title = "Edit-Icon"><FaEdit /></td>
+         <td data-title = "Edit-Icon"onClick={()=> handleEdit(item.id)}><FaEdit /></td>
         </tr>
         
         ))): null }

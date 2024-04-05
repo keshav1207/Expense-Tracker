@@ -1,10 +1,11 @@
 
-export default function EditExpenseForm(){
+export default function EditExpenseForm(props){
+    
     return(
         <>
         <div className="modal-Container">
        <div className="title"><h1>Edit Expense form</h1></div> 
-        <div className="closeBtn"> <button> x </button></div>
+        <div className="closeBtn"> <button onClick={props.toggleModal}> x </button></div>
         
         <form className="edit-Expense-Form">
 
