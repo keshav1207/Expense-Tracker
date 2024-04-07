@@ -1,6 +1,7 @@
-
+import { useGetTransactionQuery } from "../redux/api";
 export default function EditExpenseForm(props){
-    
+    const{data: getTransaction} = useGetTransactionQuery(props.id);
+    console.log(getTransaction);
     return(
         <>
         <div className="modal-Container">

@@ -43,7 +43,7 @@ export const expenseTrackerApi = createApi({
     }),
 
     getTransaction: builder.query({
-      query: (TransactionId) => `getCategory/${TransactionId}`,
+      query: (TransactionId) => `getTransaction/${TransactionId}`,
       providesTags: ['Post'],
     }),
 

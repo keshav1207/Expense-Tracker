@@ -14,6 +14,7 @@ export default function TransactionHistoryPage(){
     const{data, isLoading} = useGetAllTransactionsQuery();
     const [DeleteTransaction] = useDeleteTransactionMutation();
     const [modal, setModal] = useState(false);
+    const[productId, setProductId] = useState(null);
 
 
 
@@ -50,13 +51,25 @@ export default function TransactionHistoryPage(){
   }
 
   async function handleEdit(id){
-    setModal(true);
+    if(id){
+      try {
+        setProductId(id);
+        setModal(true);
+        
+      } catch (error) {
+        console.error('Failed to Edit transaction:', error);
+          toast.error("Error! Please try again", {
+              position: "top-center",
+            });
+      }
+    }
+    
   }
 
     return(
         <>
         <ToastContainer/>
-        {modal && <div className="overlay"> <EditExpenseForm  modal={modal} toggleModal={toggleModal}/></div> }
+        {modal && <div className="overlay"> <EditExpenseForm  modal={modal} toggleModal={toggleModal}  id={productId}/></div> }
         <div className="home">
           <Link to={"/"}>< FaHome id="home-icon"/></Link>
         
