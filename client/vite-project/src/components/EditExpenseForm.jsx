@@ -1,7 +1,24 @@
+import { useEffect, useState } from "react";
 import { useGetTransactionQuery } from "../redux/api";
 export default function EditExpenseForm(props){
-    const{data: getTransaction} = useGetTransactionQuery(props.id);
-    console.log(getTransaction);
+
+    const[productInfo, setProductInfo] = useState(null);
+     const{data} = useGetTransactionQuery(props.id);
+    
+     useEffect(() => {
+    // Update productInfo only when data is available
+    if (data) {
+      setProductInfo(data[0]);
+      
+    }
+  }, [data]); 
+
+  
+    
+     console.log(productInfo);
+
+ 
+
     return(
         <>
         <div className="modal-Container">
@@ -11,8 +28,9 @@ export default function EditExpenseForm(props){
         <form className="edit-Expense-Form">
 
             
-            <input type="text" placeholder="Rent, Gym membership, Presto top up"   />
+            <input type="text" value={productInfo?(`${productInfo.name.toUpperCase()}`):("Rent, Gym membership, Presto top up")}  />
             <select >
+                <option value="" disabled selected>Select an option</option>
                 <option value= "1">Rent</option>
                 <option value="2">Eating-out</option>
                 <option value="3">Transport</option>
@@ -22,8 +40,8 @@ export default function EditExpenseForm(props){
                 <option value="7">Fitness</option>
                 <option value="8">Shopping</option>
             </select>
-            <input type="text" placeholder="$200"  />
-            <input type="date"  />
+            <input type="text" value= {productInfo?(`$ ${productInfo.amount}`):("")}  />
+            <input type="date" value= {productInfo?(`${ new Date(productInfo.date).toISOString().split('T')[0]}`):("")}  />  
             <div className="saveChangesBtn"><button > Save Changes </button></div>
 
 
