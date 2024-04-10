@@ -68,10 +68,10 @@ export const expenseTrackerApi = createApi({
     }),
 
     updateTransaction: builder.mutation({
-      query: (id,userData) => ({
+      query: ({id,updatedData}) => ({
         url: `updateTransaction/${id}`,
         method:'PUT',
-        body: userData,
+        body: updatedData,
        
       }),
 
@@ -95,4 +95,5 @@ export const {
   useGetTransactionQuery,
   useCreateTransactionMutation,
   useDeleteTransactionMutation,
+  useUpdateTransactionMutation,
 } = expenseTrackerApi;

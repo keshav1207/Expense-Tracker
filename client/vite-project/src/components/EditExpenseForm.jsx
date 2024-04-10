@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 import { useGetTransactionQuery } from "../redux/api";
+import { useUpdateTransactionMutation } from "../redux/api";
 import {useForm} from 'react-hook-form';
 import {  toast } from "react-toastify";
 export default function EditExpenseForm(props){
 
-    
+    const[updateTransaction] = useUpdateTransactionMutation();
      const{data} = useGetTransactionQuery(props.id);
      const {register,handleSubmit,setValue} = useForm();
     
@@ -21,21 +22,21 @@ export default function EditExpenseForm(props){
   
     
   
-  const onSubmit = async (formData)=>{
-      if(formData){
+  const onSubmit = async (updatedData)=>{
+      if(updatedData){
       try {
-          console.log(formData);
-        //   const data = await createTransaction(formData).unwrap();
-        //   console.log(data);
-        //   toast.success("Transaction Updated Successfully!", {
-        //       position: "top-center",
-        //     });
+         
+          const data = await updateTransaction({id:props.id, updatedData: updatedData}).unwrap();
+          console.log(data);
+          toast.success("Transaction Updated Successfully!", {
+              position: "top-center",
+            });
          
       } catch (error) {
           console.error('Failed to create transaction:', error);
-        //   toast.error("Error! Please try again", {
-        //       position: "top-center",
-        //     });
+          toast.error("Error! Please try again", {
+              position: "top-center",
+            });
       }
           
       }
