@@ -1,21 +1,47 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useGetTransactionQuery } from "../redux/api";
+import {useForm} from 'react-hook-form';
+import {  toast } from "react-toastify";
 export default function EditExpenseForm(props){
 
-    const[productInfo, setProductInfo] = useState(null);
+    
      const{data} = useGetTransactionQuery(props.id);
+     const {register,handleSubmit,setValue} = useForm();
     
      useEffect(() => {
     // Update productInfo only when data is available
     if (data) {
-      setProductInfo(data[0]);
-      
+      setValue('name',data[0].name);
+      setValue('amount',data[0].amount);
+      setValue('category',data[0].category);
+      setValue('date', `${ new Date(data[0].date).toISOString().split('T')[0]}`); 
     }
   }, [data]); 
 
   
     
-     console.log(productInfo);
+  
+  const onSubmit = async (formData)=>{
+      if(formData){
+      try {
+          console.log(formData);
+        //   const data = await createTransaction(formData).unwrap();
+        //   console.log(data);
+        //   toast.success("Transaction Updated Successfully!", {
+        //       position: "top-center",
+        //     });
+         
+      } catch (error) {
+          console.error('Failed to create transaction:', error);
+        //   toast.error("Error! Please try again", {
+        //       position: "top-center",
+        //     });
+      }
+          
+      }
+     
+      props.toggleModal();
+  }
 
  
 
@@ -25,11 +51,11 @@ export default function EditExpenseForm(props){
        <div className="title"><h1>Edit Expense form</h1></div> 
         <div className="closeBtn"> <button onClick={props.toggleModal}> x </button></div>
         
-        <form className="edit-Expense-Form">
+        <form className="edit-Expense-Form" onSubmit={handleSubmit(onSubmit)}>
 
             
-            <input type="text" value={productInfo?(`${productInfo.name.toUpperCase()}`):("Rent, Gym membership, Presto top up")}  />
-            <select >
+            <input type="text"  {...register('name')} />
+            <select  {...register('category')}>
                 <option value="" disabled selected>Select an option</option>
                 <option value= "1">Rent</option>
                 <option value="2">Eating-out</option>
@@ -40,9 +66,9 @@ export default function EditExpenseForm(props){
                 <option value="7">Fitness</option>
                 <option value="8">Shopping</option>
             </select>
-            <input type="text" value= {productInfo?(`$ ${productInfo.amount}`):("")}  />
-            <input type="date" value= {productInfo?(`${ new Date(productInfo.date).toISOString().split('T')[0]}`):("")}  />  
-            <div className="saveChangesBtn"><button > Save Changes </button></div>
+            <input type="text"  {...register('amount')} />
+            <input type="date"  {...register('date')}  />  
+            <div className="saveChangesBtn"><button type="submit" > Save Changes </button></div>
 
 
         </form>
