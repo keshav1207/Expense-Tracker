@@ -67,6 +67,17 @@ export const expenseTrackerApi = createApi({
       invalidatesTags: ['Post'],
     }),
 
+    updateTransaction: builder.mutation({
+      query: (id,userData) => ({
+        url: `updateTransaction/${id}`,
+        method:'PUT',
+        body: userData,
+       
+      }),
+
+      invalidatesTags: ['Post'],
+    }),
+
     
 
    
