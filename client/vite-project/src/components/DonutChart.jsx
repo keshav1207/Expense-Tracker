@@ -1,9 +1,9 @@
 import { Doughnut } from 'react-chartjs-2';
 import{Chart,ArcElement} from 'chart.js';
+import getTotal from '../tools/getTotal';
+import { useGetAllTransactionsQuery } from '../redux/api';
 
 Chart.register(ArcElement);
-
-
 
   const config = {
     data: {
@@ -31,14 +31,15 @@ Chart.register(ArcElement);
     };
 
 
-
+ 
 export default function DonutChart(){
+  const{data,isLoading} = useGetAllTransactionsQuery();
     return(
         <>
         <Doughnut {...config}></Doughnut>
         <div className="total-container">
         <h3>Total</h3>
-        <span>$0</span>
+        <span>$ {!isLoading && getTotal(data)}</span>
         </div>
         
         </>
