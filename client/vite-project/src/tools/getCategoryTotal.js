@@ -6,7 +6,7 @@ export default function getCategoryTotal(transactions){
 
      for(var i in transactions){
             const categoryName = transactions[i].Category_Name;
-            const amount = transactions[i].amount;
+            const amount = parseFloat(transactions[i].amount);
 
             
             if (categoryTotal[categoryName]) {
