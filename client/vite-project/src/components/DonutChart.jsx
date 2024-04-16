@@ -3,6 +3,7 @@ import{Chart,ArcElement} from 'chart.js';
 import getTotal from '../tools/getTotal';
 import { useGetAllTransactionsQuery } from '../redux/api';
 
+
 Chart.register(ArcElement);
 
   const config = {
@@ -33,13 +34,14 @@ Chart.register(ArcElement);
 
  
 export default function DonutChart(){
-  const{data,isLoading} = useGetAllTransactionsQuery();
+  const{data:transactions,isLoading} = useGetAllTransactionsQuery();
+  
     return(
         <>
         <Doughnut {...config}></Doughnut>
         <div className="total-container">
         <h3>Total</h3>
-        <span>$ {!isLoading && getTotal(data)}</span>
+        <span>$ {!isLoading && getTotal(transactions)}</span>
         </div>
         
         </>

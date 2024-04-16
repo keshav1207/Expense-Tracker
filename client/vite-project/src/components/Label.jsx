@@ -1,15 +1,36 @@
+import { useGetAllTransactionsQuery } from "../redux/api";
+import { useGetAllCategoriesQuery } from "../redux/api";
+import getCategoryTotal from "../tools/getCategoryTotal";
+
 
 export default function Label(){
-    const data = {
-        Rent: {colour:'red', amount: 10} ,
-        Eating_Out:{colour:'blue', amount: 10} ,
-        Transport: {colour:'yellow', amount: 10} ,
-        Utilities: {colour:'green', amount: 10} ,
-        Mobile: {colour:'orange', amount: 10} ,
-        Groceries: {colour:'purple', amount: 10} ,
-        Fitness: {colour:'indigo', amount: 10} ,
-        Shopping: {colour:'pink', amount: 10} 
+
+const{data:transactions} = useGetAllTransactionsQuery();
+const{data:categories} = useGetAllCategoriesQuery();
+
+const categoryTotal = getCategoryTotal(transactions);
+
+
+    const data = {}
+
+    //Adding category name and amount to data
+    for(let key in categoryTotal){
+        data[key] = {colour:'to be implemented',amount:categoryTotal[key] };  
     }
+
+    //Adding colour to data
+    if(categories){
+
+        for(let category of categories){
+        if(data[category.name]){
+          data[category.name].colour = category.colour;
+        }
+        }
+    }
+    
+
+    console.log(data);
+
     return(
         <>
            {renderLabel(data)}
@@ -24,6 +45,7 @@ function renderLabel(data){
         //to use the .map function which is used only on arrays
         const labels = Object.keys(data).map((expense, index) => {
             const{ colour, amount } = data[expense];
+            
 
             return(  
             <div className="label" key={index}>
