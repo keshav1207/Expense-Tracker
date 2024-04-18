@@ -67,7 +67,21 @@ connection.connect(function(err) {
   });
   
 
+   //Add code to create  user table
+   const userTable = `CREATE TABLE user(
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    password VARCHAR(100) NOT NULL,
+    email VARCHAR(50) NOT NULL, 
+  )`;
 
+
+   // Execute code to create user table
+
+connection.query(userTable,(err,results)=>{
+  if(err) throw err;
+  console.log(results);
+});
 
  
 
@@ -78,8 +92,9 @@ connection.connect(function(err) {
       amount DECIMAL(10, 2),
       category   INT,
       date  DATE,
-      
+      user INT,
       FOREIGN KEY(category)  REFERENCES  expenseCategory(id)
+      FOREIGN KEY(user)  REFERENCES  user(user_id)
     )`;
 
 

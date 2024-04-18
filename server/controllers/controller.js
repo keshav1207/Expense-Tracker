@@ -221,7 +221,6 @@ function deleteTransaction(req,res){
 // Update a transaction
 function updateTransaction(req,res){
 
-
   const transactionId = req.params.transactionId;
   const updates = req.body;
 
@@ -232,6 +231,8 @@ function updateTransaction(req,res){
 
     let updateQuery = `UPDATE expenseTransaction SET `
     let updateValues = [];
+
+   
 
   // The following isLast variable is used so that we don't add a comma after the last column we want to update
     let isLast = true;

@@ -29,7 +29,7 @@ const categoryTotal = getCategoryTotal(transactions);
     }
     
 
-    console.log(data);
+   
 
     return(
         <>
