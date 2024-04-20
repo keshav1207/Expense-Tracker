@@ -20,6 +20,9 @@ connection.connect(function(err) {
   });
 
 
+
+
+
 //Get all Categories 
 function getAllCategories(req,res){
   
@@ -272,6 +275,33 @@ function updateTransaction(req,res){
 }
 
 
+// Register
+function register(req,res){
+
+  const {userName, email, password} = req.body;
+
+  // Validate input
+  if (!userName || !email|| !password) {
+   return res.status(400).json({ error: 'Name, email and password are required' });
+ }
+ 
+   connection.connect(function(err) {
+     if (err) {
+       console.error('Error executing query:', err);
+       return res.status(500).json({ error: 'Internal server error' });
+   }
+     connection.query('INSERT INTO userTable (username, email, password) VALUES (?, ?, ?)',[userName, email, password], function (err, result, fields) {
+       if (err) {
+         console.error('Error executing query:', err);
+         return res.status(500).json({ error: 'Internal server error' });
+     }
+       console.log(result);
+       res.send(result);
+     });
+   });
+}
+
+
 
 
 module.exports = {
@@ -283,6 +313,7 @@ module.exports = {
     getTransaction,
     createTransaction,
     deleteTransaction,
-    updateTransaction
+    updateTransaction,
+     register,
 
 }
