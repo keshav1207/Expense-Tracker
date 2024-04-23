@@ -275,7 +275,7 @@ function updateTransaction(req,res){
 }
 
 
-// Register
+// Register User
 function registerUser(req,res){
 
   const {userName, email, password} = req.body;
@@ -301,6 +301,26 @@ function registerUser(req,res){
    });
 }
 
+function getAllUsers(req,res){
+  connection.connect(function(err) {
+    if (err) {
+      console.error('Error executing query:', err);
+      return res.status(500).json({ error: 'Internal server error' });
+  }
+    connection.query('SELECT * FROM user',function (err, result, fields) {
+      if (err) {
+        console.error('Error executing query:', err);
+        return res.status(500).json({ error: 'Internal server error' });
+    }
+      console.log(result);
+      res.send(result);
+    });
+  });
+
+}
+
+
+
 
 
 
@@ -315,5 +335,6 @@ module.exports = {
     deleteTransaction,
     updateTransaction,
     registerUser,
+    getAllUsers
 
 }
