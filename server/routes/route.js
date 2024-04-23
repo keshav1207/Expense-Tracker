@@ -18,7 +18,10 @@ router.route('/api/updateTransaction/:transactionId').put(controller.updateTrans
 
 //User Routes
 router.route('/api/getAllUsers').get(controller.getAllUsers);
+router.route('/api/getUser/:userId').get(controller.getUser);
 router.route('/api/registerUser').post(controller.registerUser);
+router.route('/api/deleteUser/:userId').delete(controller.deleteUser);
+
 
 
 module.exports = router;

@@ -301,6 +301,7 @@ function registerUser(req,res){
    });
 }
 
+//Get all registered users
 function getAllUsers(req,res){
   connection.connect(function(err) {
     if (err) {
@@ -320,6 +321,55 @@ function getAllUsers(req,res){
 }
 
 
+//Get a specific user
+function getUser(req,res){
+  const userId = req.params.userId;
+
+   // Validate input
+if (!userId) {
+return res.status(400).json({ error: 'UserId required' });
+}
+  connection.connect(function(err) {
+    if (err) {
+      console.error('Error executing query:', err);
+      return res.status(500).json({ error: 'Internal server error' });
+  }
+    connection.query('SELECT * FROM user WHERE  user_id = ?',[userId], function (err, result, fields) {
+      if (err) {
+        console.error('Error executing query:', err);
+        return res.status(500).json({ error: 'Internal server error' });
+    }
+      console.log(result);
+      res.send(result);
+    });
+  });
+}
+
+//Delete a user
+function deleteUser(req,res){
+  const userId = req.params.userId;
+
+   // Validate input
+if (!userId) {
+return res.status(400).json({ error: 'UserId required' });
+}
+  connection.connect(function(err) {
+    if (err) {
+      console.error('Error executing query:', err);
+      return res.status(500).json({ error: 'Internal server error' });
+  }
+    connection.query('DELETE FROM user WHERE  user_id = ?',[userId], function (err, result, fields) {
+      if (err) {
+        console.error('Error executing query:', err);
+        return res.status(500).json({ error: 'Internal server error' });
+    }
+      console.log(result);
+      res.send(result);
+    });
+  });
+}
+
+
 
 
 
@@ -335,6 +385,8 @@ module.exports = {
     deleteTransaction,
     updateTransaction,
     registerUser,
-    getAllUsers
+    getAllUsers,
+    getUser,
+    deleteUser,
 
 }
