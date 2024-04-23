@@ -276,7 +276,7 @@ function updateTransaction(req,res){
 
 
 // Register
-function register(req,res){
+function registerUser(req,res){
 
   const {userName, email, password} = req.body;
 
@@ -290,7 +290,7 @@ function register(req,res){
        console.error('Error executing query:', err);
        return res.status(500).json({ error: 'Internal server error' });
    }
-     connection.query('INSERT INTO userTable (username, email, password) VALUES (?, ?, ?)',[userName, email, password], function (err, result, fields) {
+     connection.query('INSERT INTO user (username, email, password) VALUES (?, ?, ?)',[userName, email, password], function (err, result, fields) {
        if (err) {
          console.error('Error executing query:', err);
          return res.status(500).json({ error: 'Internal server error' });
@@ -314,6 +314,6 @@ module.exports = {
     createTransaction,
     deleteTransaction,
     updateTransaction,
-     register,
+    registerUser,
 
 }

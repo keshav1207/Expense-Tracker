@@ -72,7 +72,7 @@ connection.connect(function(err) {
     user_id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL,
     password VARCHAR(100) NOT NULL,
-    email VARCHAR(50) NOT NULL, 
+    email VARCHAR(50) NOT NULL 
   )`;
 
 
@@ -93,7 +93,7 @@ connection.query(userTable,(err,results)=>{
       category   INT,
       date  DATE,
       user INT,
-      FOREIGN KEY(category)  REFERENCES  expenseCategory(id)
+      FOREIGN KEY(category)  REFERENCES  expenseCategory(id),
       FOREIGN KEY(user)  REFERENCES  user(user_id)
     )`;
 

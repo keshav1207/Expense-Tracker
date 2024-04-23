@@ -16,5 +16,8 @@ router.route('/api/createTransaction').post(controller.createTransaction);
 router.route('/api/deleteTransaction/:transactionId').delete(controller.deleteTransaction);
 router.route('/api/updateTransaction/:transactionId').put(controller.updateTransaction);
 
+//User Routes
+router.route('/api/registerUser').post(controller.registerUser);
+
 
 module.exports = router;
