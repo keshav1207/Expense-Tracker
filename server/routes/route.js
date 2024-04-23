@@ -21,6 +21,7 @@ router.route('/api/getAllUsers').get(controller.getAllUsers);
 router.route('/api/getUser/:userId').get(controller.getUser);
 router.route('/api/registerUser').post(controller.registerUser);
 router.route('/api/deleteUser/:userId').delete(controller.deleteUser);
+router.route('/api/updateUser/:userId').put(controller.updateUser);
 
 
 

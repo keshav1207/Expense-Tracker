@@ -21,7 +21,7 @@ connection.connect(function(err) {
 
 
 
-
+//------------------Categories Controllers---------------------------//
 
 //Get all Categories 
 function getAllCategories(req,res){
@@ -117,6 +117,8 @@ function deleteCategory(req,res){
     });
 
 }
+
+//------------------Transaction Controllers---------------------------//
 
 //Get all transactions
 function getAllTransactions(req,res){
@@ -275,6 +277,9 @@ function updateTransaction(req,res){
 }
 
 
+//------------------User Controllers---------------------------//
+
+
 // Register User
 function registerUser(req,res){
 
@@ -369,6 +374,59 @@ return res.status(400).json({ error: 'UserId required' });
   });
 }
 
+// Update a User
+function updateUser(req,res){
+
+  const userId = req.params.userId;
+  const updates = req.body;
+
+     // Validate input
+  if (!userId) {
+    return res.status(400).json({ error: 'User Id required' });
+    }
+
+    let updateQuery = `UPDATE user SET `
+    let updateValues = [];
+
+   
+
+  // The following isLast variable is used so that we don't add a comma after the last column we want to update
+    let isLast = true;
+    Object.keys(updates).forEach((key) => {
+      if (updates[key]) {
+        if(!isLast){
+          updateQuery += `,`
+        }
+        updateQuery += `${key} = ?`;
+        updateValues.push(updates[key]);
+        isLast = false;
+
+      }
+    });
+
+    updateQuery += ` WHERE user_id = ?`
+    updateValues.push(userId);
+
+    console.log(updateQuery,updateValues);
+
+
+    connection.connect(function(err) {
+      if (err) {
+        console.error('Error executing query:', err);
+        return res.status(500).json({ error: 'Internal server error' });
+    }
+      connection.query(updateQuery,updateValues, function (err, result, fields) {
+        if (err) {
+          console.error('Error executing query:', err);
+          return res.status(500).json({ error: 'Internal server error' });
+      }
+        console.log(result);
+        res.send(result);
+      });
+    });
+
+}
+
 
 
 
@@ -388,5 +446,6 @@ module.exports = {
     getAllUsers,
     getUser,
     deleteUser,
+    updateUser
 
 }
