@@ -289,20 +289,39 @@ function registerUser(req,res){
   if (!userName || !email|| !password) {
    return res.status(400).json({ error: 'Name, email and password are required' });
  }
+
  
    connection.connect(function(err) {
      if (err) {
        console.error('Error executing query:', err);
        return res.status(500).json({ error: 'Internal server error' });
    }
-     connection.query('INSERT INTO user (username, email, password) VALUES (?, ?, ?)',[userName, email, password], function (err, result, fields) {
-       if (err) {
-         console.error('Error executing query:', err);
-         return res.status(500).json({ error: 'Internal server error' });
-     }
-       console.log(result);
-       res.send(result);
-     });
+
+
+    //Verify that email used is unique
+    connection.query('SELECT * FROM user WHERE email = ?',[email], function (err, result, fields) {
+      if (err) {
+        console.error('Error executing query:', err);
+        return res.status(500).json({ error: 'Internal server error' });
+    }
+
+    if (result.length > 0) {
+      return res.status(500).json({ error: 'Email already being used!' });
+    }
+
+    connection.query('INSERT INTO user (username, email, password) VALUES (?, ?, ?)',[userName, email, password], function (err, result, fields) {
+      if (err) {
+        console.error('Error executing query:', err);
+        return res.status(500).json({ error: 'Internal server error' });
+    }
+      console.log(result);
+      return res.status(200).json({ message: 'User created successfully!' });
+    });
+  
+    });
+
+
+     
    });
 }
 
