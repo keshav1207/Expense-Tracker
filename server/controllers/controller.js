@@ -1,4 +1,5 @@
 const connection = require ('../config/connect');
+const bcrypt = require('bcrypt');
 
 //Connecting to Mysql database
 connection.connect(function(err) {
@@ -282,14 +283,19 @@ function updateTransaction(req,res){
 
 
 // Register User
-function registerUser(req,res){
-
+async function registerUser(req,res){
+  const saltRounds = 12;
   const {userName, email, password} = req.body;
 
   // Validate input
   if (!userName || !email|| !password) {
    return res.status(400).json({ error: 'Name, email and password are required' });
  }
+
+ //Hash password
+    
+ const hashedPassword  = await bcrypt.hash(password, saltRounds)
+
 
  
    connection.connect(function(err) {
@@ -310,7 +316,8 @@ function registerUser(req,res){
       return res.status(500).json({ error: 'Email already being used!' });
     }
 
-    connection.query('INSERT INTO user (username, email, password) VALUES (?, ?, ?)',[userName, email, password], function (err, result, fields) {
+    
+    connection.query('INSERT INTO user (username, email, password) VALUES (?, ?, ?)',[userName, email, hashedPassword], function (err, result, fields) {
       if (err) {
         console.error('Error executing query:', err);
         return res.status(500).json({ error: 'Internal server error' });
@@ -327,7 +334,7 @@ function registerUser(req,res){
 }
 
 //Get all registered users
-function getAllUsers(req,res){
+ function  getAllUsers(req,res){
   connection.connect(function(err) {
     if (err) {
       console.error('Error executing query:', err);
