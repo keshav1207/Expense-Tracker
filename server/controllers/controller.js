@@ -143,6 +143,7 @@ function getAllTransactions(req,res){
 
 // Create  a new transaction
 function createTransaction(req,res){
+  const user = req.params.user;
   const {name, amount, category, date} = req.body;
 
   // Validate input
@@ -155,7 +156,7 @@ function createTransaction(req,res){
        console.error('Error executing query:', err);
        return res.status(500).json({ error: 'Internal server error' });
    }
-     connection.query('INSERT INTO expenseTransaction (name, amount, category, date) VALUES (?, ?, ?, ?)',[name, amount, category, date], function (err, result, fields) {
+     connection.query('INSERT INTO expenseTransaction (name, amount, category, date, user) VALUES (?, ?, ?, ?,?)',[name, amount, category, date, user], function (err, result, fields) {
        if (err) {
          console.error('Error executing query:', err);
          return res.status(500).json({ error: 'Internal server error' });

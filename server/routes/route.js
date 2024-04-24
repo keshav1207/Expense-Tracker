@@ -12,7 +12,7 @@ router.route('/api/deleteCategory').delete(controller.deleteCategory);
 // Transaction Routes
 router.route('/api/getAllTransactions').get(controller.getAllTransactions);
 router.route('/api/getTransaction/:transactionId').get(controller.getTransaction);
-router.route('/api/createTransaction').post(controller.createTransaction);
+router.route('/api/createTransaction/:user').post(controller.createTransaction);
 router.route('/api/deleteTransaction/:transactionId').delete(controller.deleteTransaction);
 router.route('/api/updateTransaction/:transactionId').put(controller.updateTransaction);
 
