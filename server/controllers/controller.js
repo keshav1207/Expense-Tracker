@@ -1,5 +1,7 @@
 const connection = require ('../config/connect');
 const bcrypt = require('bcrypt');
+var jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 //Connecting to Mysql database
 connection.connect(function(err) {
@@ -323,6 +325,19 @@ async function registerUser(req,res){
         return res.status(500).json({ error: 'Internal server error' });
     }
       console.log(result);
+
+      //Creating Token
+      const token = jwt.sign({
+        hashedPassword
+      }, process.env.JWT_SECRET, { expiresIn: '1d' });
+
+
+      res.cookie("token", token, {
+        withCredentials: true,
+        httpOnly: false,
+      });
+
+
       return res.status(200).json({ message: 'User created successfully!' });
     });
   
