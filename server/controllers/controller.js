@@ -328,7 +328,7 @@ async function registerUser(req,res){
 
       //Creating Token
       const token = jwt.sign({
-        hashedPassword
+        userName
       }, process.env.JWT_SECRET, { expiresIn: '1d' });
 
 
@@ -379,7 +379,7 @@ async function loginUser(req,res){
        if(result){
         //Creating Token
         const token = jwt.sign({
-          hashedPassword
+          userName
         }, process.env.JWT_SECRET, { expiresIn: '1d' });
 
 
