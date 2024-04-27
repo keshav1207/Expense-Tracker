@@ -397,6 +397,13 @@ async function loginUser(req,res){
 
 }
 
+
+//Log out User
+function logOutUser(req,res){
+  res.clearCookie('token');
+  return res.status(200).json({ message: 'User Logged out successfully!' });
+}
+
 //Get all registered users
  function  getAllUsers(req,res){
   connection.connect(function(err) {
@@ -538,6 +545,7 @@ module.exports = {
     getUser,
     deleteUser,
     updateUser,
-    loginUser
+    loginUser,
+    logOutUser
 
 }
