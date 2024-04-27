@@ -348,6 +348,55 @@ async function registerUser(req,res){
    });
 }
 
+// Login User
+
+async function loginUser(req,res){
+  const {userName, email, password} = req.body;
+
+  // Validate input
+  if (!userName || !email|| !password) {
+   return res.status(400).json({ error: 'Name, email and password are required' });
+ }
+
+ //Getting hashed password from database
+ connection.connect(function(err) {
+  if (err) {
+    console.error('Error executing query:', err);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
+
+  connection.query('SELECT password FROM user WHERE email = ? AND username = ?',[email,userName], function (err, results, fields) {
+    if (err) {
+      console.error('Error executing query:', err);
+      return res.status(500).json({ error: 'Internal server error' });
+  }
+
+  
+    const hashedPassword = (results[0].password);
+
+    //Verified password
+    bcrypt.compare(password, hashedPassword, function(err, result) {
+       if(result){
+        //Creating Token
+        const token = jwt.sign({
+          hashedPassword
+        }, process.env.JWT_SECRET, { expiresIn: '1d' });
+
+
+        res.cookie("token", token, {
+          withCredentials: true,
+          httpOnly: false,
+        });
+
+
+      return res.status(200).json({ message: 'User Logged In successfully!' });
+     }
+    });
+  })
+ })
+
+}
+
 //Get all registered users
  function  getAllUsers(req,res){
   connection.connect(function(err) {
@@ -488,6 +537,7 @@ module.exports = {
     getAllUsers,
     getUser,
     deleteUser,
-    updateUser
+    updateUser,
+    loginUser
 
 }
