@@ -125,13 +125,13 @@ function deleteCategory(req,res){
 
 //Get all transactions
 function getAllTransactions(req,res){
-
+  const user = req.params.user; 
   connection.connect(function(err) {
     if (err) {
       console.error('Error executing query:', err);
       return res.status(500).json({ error: 'Internal server error' });
   }
-    connection.query('SELECT expenseTransaction.*, expenseCategory.name AS Category_Name FROM expenseTransaction JOIN expenseCategory ON expenseTransaction.category = expenseCategory.id; ', function (err, result, fields) {
+    connection.query('SELECT expenseTransaction.*, expenseCategory.name AS Category_Name FROM expenseTransaction JOIN expenseCategory ON expenseTransaction.category = expenseCategory.id WHERE expenseTransaction.user = ?', [user],function (err, result, fields) {
       if (err) {
         console.error('Error executing query:', err);
         return res.status(500).json({ error: 'Internal server error' });
