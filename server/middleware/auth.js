@@ -2,7 +2,7 @@ const connection = require("../config/connect");
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
 
-module.exports.userVerification = (req, res) => {
+module.exports.userVerification = (req, res,next) => {
   const token = req.cookies.token
   if (!token) {
     return res.json({ status: false })
@@ -23,11 +23,10 @@ module.exports.userVerification = (req, res) => {
                 return res.status(500).json({ error: 'Internal server error' });
             }
 
-            return res.json({ status: true, user: result.username })
+                next();
               
             });
           });
-
 
       
     }
