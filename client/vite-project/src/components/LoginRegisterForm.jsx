@@ -1,21 +1,51 @@
 import { useState } from "react"
+import axios from "axios";
+import {useForm} from "react-hook-form"
 
 
 export default function LoginRegisterForm(){
 
     const[login, setLogin] = useState(true);
+    const {register,handleSubmit,reset } = useForm();
+
+
+    function axiosLogin(data) {
+        axios
+          .post(" http://localhost:5000/api/loginUser", data)
+          .then((response) => {
+            console.log(response.data);
+          });
+      }
+
+    
+      function axiosRegister(data) {
+        axios
+          .post(" http://localhost:5000/api/registerUser", data)
+          .then((response) => {
+            console.log(response.data);
+          });
+      }
+
     
     function handleClick(){
-
         setLogin(!login);
+        reset()
     }
+
+      const onSubmit = async (data) => {
+        login? (await axiosLogin(data)):(await axiosRegister(data))
+        console.log(data);
+        reset()
+      };
+
 
 
     return(
         <>
+        
         <div className="logreg-container">
 
-        <form className="login-register-form">
+        <form className="login-register-form" onSubmit={handleSubmit(onSubmit)}>
 
         <div className="heading">
 
@@ -26,16 +56,16 @@ export default function LoginRegisterForm(){
         </div>
 
 
-        {login?(null):(<input type="text" id="name" placeholder="Name" />)}
-        <input type="text"  id="email" placeholder="Email"/>
-        <input type="password"  id="password " placeholder="Password"/>
+        {login?(null):(<input type="text" id="name" placeholder="Name" {...register("userName")} />)}
+        <input type="text"  id="email" placeholder="Email" {...register("email")}/>
+        <input type="password"  id="password " placeholder="Password" {...register("password")}/>
 
-       {login?(<div className="logRegMessage" onClick={handleClick}> Already have an account? <span className="form-choice">Login</span></div>):(<div className="logRegMessage" onClick={handleClick}> Don't have an account? <span className="form-choice">Register</span></div>)} 
-
-        {login?( <button className="loginBtn">Login</button>):( <button className="registerBtn">Register</button>)}
-       
        
 
+       {login?(<div className="logRegMessage" onClick={handleClick}> Don't have an account? <span className="form-choice">Register</span></div>):( <div className="logRegMessage" onClick={handleClick}> Already have an account? <span className="form-choice">Login</span></div>)} 
+
+        {login?( <button className="loginBtn" type="submit">Login</button>):( <button className="registerBtn" type="submit">Register</button>)}
+       
         </form>
 
         </div>
