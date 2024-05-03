@@ -234,3 +234,78 @@ th, td {
   border-radius: 1rem;
   padding: 1rem;
 }
+
+
+
+.logreg-container{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("./images/pexels-gabriela-palai-129458-395196.jpg");
+  background-size: cover;
+  background-position: 100% 100%; /* This positions the background image at the bottom right corner */
+  /* Other background properties */
+}
+
+.login-register-form{
+  background-color: rgba(255, 255, 255, 0.8); 
+  border-radius: 10px;
+  font-size: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  color: black;
+}
+
+.underline{
+  background-color: black;
+  width: 50px;
+  height: 5px;
+  margin-top: 0.25rem;
+  margin-left: 2.5rem;
+  
+}
+
+.headerLog{
+  font-size: 2rem;
+}
+
+
+
+.registerBtn, .loginBtn{
+  padding: 1rem;
+  background-color: black;
+  color: white;
+  border: none;
+  font-size: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+
+}
+
+input{
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 8px 12px;
+  font-size: 14px;
+  color: #333;
+  background-color: #f7f7f7;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+
+}
+
+.logRegMessage{
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
+.form-choice{
+  color: blue;
+}
+
