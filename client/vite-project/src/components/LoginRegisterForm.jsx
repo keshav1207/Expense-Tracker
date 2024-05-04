@@ -1,6 +1,8 @@
 import { useState } from "react"
 import axios from "axios";
 import {useForm} from "react-hook-form"
+import {  toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 export default function LoginRegisterForm(){
@@ -13,7 +15,15 @@ export default function LoginRegisterForm(){
         axios
           .post(" http://localhost:5000/api/loginUser", data)
           .then((response) => {
-            console.log(response.data);
+            const msg = response.data.message;
+            toast.success(msg, {
+                position: "top-center",
+              });
+          }).catch(error => {
+            const msg = error.response.data.error;
+            toast.error(msg, {
+                position: "top-center",
+              });
           });
       }
 
@@ -22,7 +32,16 @@ export default function LoginRegisterForm(){
         axios
           .post(" http://localhost:5000/api/registerUser", data)
           .then((response) => {
-            console.log(response.data);
+            const msg = response.data.message;
+            toast.success(msg, {
+                position: "top-center",
+              });
+          }).catch(error => {
+            const msg = error.response.data.error;
+            toast.error(msg, {
+                position: "top-center",
+              });
+            
           });
       }
 
