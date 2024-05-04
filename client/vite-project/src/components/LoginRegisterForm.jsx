@@ -3,12 +3,14 @@ import axios from "axios";
 import {useForm} from "react-hook-form"
 import {  toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 
 export default function LoginRegisterForm(){
 
     const[login, setLogin] = useState(true);
     const {register,handleSubmit,reset } = useForm();
+    const navigate = useNavigate();
 
 
     function axiosLogin(data) {
@@ -19,6 +21,13 @@ export default function LoginRegisterForm(){
             toast.success(msg, {
                 position: "top-center",
               });
+
+              setTimeout(() => {
+                navigate("/home");
+              }, 2000); 
+
+             
+
           }).catch(error => {
             const msg = error.response.data.error;
             toast.error(msg, {
@@ -36,6 +45,9 @@ export default function LoginRegisterForm(){
             toast.success(msg, {
                 position: "top-center",
               });
+
+            setLogin(true);
+
           }).catch(error => {
             const msg = error.response.data.error;
             toast.error(msg, {
@@ -57,6 +69,7 @@ export default function LoginRegisterForm(){
         reset()
       };
 
+    
 
 
     return(
