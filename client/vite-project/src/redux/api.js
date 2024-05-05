@@ -38,7 +38,7 @@ export const expenseTrackerApi = createApi({
 
 
     getAllTransactions: builder.query({
-      query: () => 'getAllTransactions',
+      query: (userId) => `getAllTransactions/${userId}`,
       providesTags: ['Post'],
     }),
 
