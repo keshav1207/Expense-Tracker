@@ -22,7 +22,7 @@ export default function HomePage() {
     <div className="form-container">
       <CreateExpenseForm/>
       <div className="history-btn">
-      <Link to={"/history"}><button> Go to Transaction History Page</button></Link>
+      <Link to={"/history"}><button> Transaction History Page</button></Link>
     </div>
     </div>
     </div>
