@@ -4,11 +4,13 @@ import getTotal from '../tools/getTotal';
 import { useGetAllTransactionsQuery } from '../redux/api';
 import { useGetAllCategoriesQuery } from '../redux/api';
 import getCategoryTotal from '../tools/getCategoryTotal';
+import { useParams } from 'react-router-dom';
 
 Chart.register(ArcElement);
 
 export default function DonutChart(){
-const{data:transactions, isLoading} = useGetAllTransactionsQuery();
+const { userId } = useParams();
+const{data:transactions, isLoading} = useGetAllTransactionsQuery(userId);
 const{data:categories} = useGetAllCategoriesQuery();
 const categoryTotal = getCategoryTotal(transactions);
 const total =  transactions? getTotal(transactions): 0;

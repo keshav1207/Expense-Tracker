@@ -1,11 +1,11 @@
 import { useGetAllTransactionsQuery } from "../redux/api";
 import { useGetAllCategoriesQuery } from "../redux/api";
 import getCategoryTotal from "../tools/getCategoryTotal";
-
+import { useParams } from 'react-router-dom';
 
 export default function Label(){
-
-const{data:transactions} = useGetAllTransactionsQuery();
+const { userId } = useParams();
+const{data:transactions} = useGetAllTransactionsQuery(userId);
 const{data:categories} = useGetAllCategoriesQuery();
 
 const categoryTotal = getCategoryTotal(transactions);
