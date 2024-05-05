@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const controller = require("../controllers/controller");
 
+
 //Category Routes
 router.route('/api/getAllCategories').get(controller.getAllCategories);
 router.route('/api/getCategory').get(controller.getCategory);

@@ -23,7 +23,7 @@ module.exports.userVerification = (req, res,next) => {
                 return res.status(500).json({ error: 'Internal server error' });
             }
 
-                next();
+               next();
               
             });
           });

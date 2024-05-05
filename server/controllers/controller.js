@@ -2,6 +2,8 @@ const connection = require ('../config/connect');
 const bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
 require('dotenv').config();
+const userVerification = require("../middleware/auth");
+
 
 //Connecting to Mysql database
 connection.connect(function(err) {
@@ -171,6 +173,8 @@ function createTransaction(req,res){
 
 }
 
+module.exports.createTransaction = [userVerification,createTransaction];
+
 // Get a  specific transaction
 function getTransaction(req,res){
   const transactionId = req.params.transactionId;
@@ -227,6 +231,8 @@ function deleteTransaction(req,res){
 
 }
 
+module.exports.deleteTransaction = [userVerification,deleteTransaction];
+
 // Update a transaction
 function updateTransaction(req,res){
 
@@ -279,6 +285,8 @@ function updateTransaction(req,res){
     });
 
 }
+
+module.exports.updateTransaction = [userVerification,updateTransaction];
 
 
 //------------------User Controllers---------------------------//
