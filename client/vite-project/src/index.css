@@ -22,6 +22,10 @@ body {
 
 }
 
+button:hover {
+  transform: scale(1.05);
+}
+
 .upper-body{
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -94,7 +98,7 @@ body {
   box-shadow:0 0 10px 2px rgba(0,0,0,0.1);
 }
 
-.create-expense-form button{
+#addTransaction{
   text-align: center;
   width: 200px;
   height: 50px;
@@ -104,6 +108,8 @@ body {
   border: none;
   border-radius: 10px;
 }
+
+
 
 .history-btn button{
   text-align: center;

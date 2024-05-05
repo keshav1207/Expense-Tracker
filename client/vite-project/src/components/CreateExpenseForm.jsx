@@ -51,7 +51,7 @@ export default function CreateExpenseForm(){
             </select>
             <input type="text" placeholder="$200" {...register('amount')} />
             <input type="date" {...register('date')} />
-            <button type="submit">Add</button>
+            <button id='addTransaction' type="submit">Add</button>
 
 
         </form>
