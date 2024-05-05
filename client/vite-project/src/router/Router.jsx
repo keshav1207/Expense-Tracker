@@ -13,7 +13,7 @@ import LoginRegisterPage from "../pages/LoginRegisterPage";
         },
 
         {
-          path: "/home",
+          path: `/home/:userId`,
           element: <HomePage/>,
         },
 

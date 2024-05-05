@@ -22,8 +22,10 @@ export default function LoginRegisterForm(){
                 position: "top-center",
               });
 
+              const userId = response.data.userId;
+
               setTimeout(() => {
-                navigate("/home");
+                navigate(`/home/${userId}`);
               }, 2000); 
 
              
