@@ -8,10 +8,12 @@ import {  toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
 import EditExpenseForm from "../components/EditExpenseForm";
+import { useParams } from 'react-router-dom';
 
 
 export default function TransactionHistoryPage(){
-    const{data, isLoading} = useGetAllTransactionsQuery();
+    const { userId } = useParams();
+    const{data, isLoading} = useGetAllTransactionsQuery(userId);
     const [DeleteTransaction] = useDeleteTransactionMutation();
     const [modal, setModal] = useState(false);
     const[productId, setProductId] = useState(null);

@@ -18,7 +18,7 @@ import LoginRegisterPage from "../pages/LoginRegisterPage";
         },
 
         {
-            path: "/history",
+            path: `/history/:userId`,
             element:<TransactionHistoryPage/>,
           }
 
