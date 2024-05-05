@@ -148,7 +148,7 @@ function getAllTransactions(req,res){
 
 // Create  a new transaction
 function createTransaction(req,res){
-  const user = req.params.user;
+  const user = req.params.userId;
   const {name, amount, category, date} = req.body;
 
   // Validate input
@@ -373,14 +373,15 @@ async function loginUser(req,res){
     return res.status(500).json({ error: 'Internal server error' });
   }
 
-  connection.query('SELECT password, username FROM user WHERE email = ? ',[email], function (err, results, fields) {
+  connection.query('SELECT password, username, user_id FROM user WHERE email = ? ',[email], function (err, results, fields) {
     if (err) {
       console.error('Error executing query:', err);
       return res.status(500).json({ error: 'Internal server error' });
   }
 
   const userName = results[0].username;
-    const hashedPassword = results[0].password;
+  const hashedPassword = results[0].password;
+  const userId = results[0].user_id;
 
     
 
@@ -399,7 +400,7 @@ async function loginUser(req,res){
         });
 
 
-      return res.status(200).json({ message: 'User Logged In successfully!' });
+      return res.status(200).json({ message: 'User Logged In successfully!' , userId:userId});
       
      }
     });
