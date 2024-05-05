@@ -73,7 +73,7 @@ export default function TransactionHistoryPage(){
         <ToastContainer/>
         {modal && <div className="overlay"> <EditExpenseForm  modal={modal} toggleModal={toggleModal}  id={productId}/></div> }
         <div className="home">
-          <Link to={"/"}>< FaHome id="home-icon"/></Link>
+          <Link to={`/home/${userId}`}>< FaHome id="home-icon"/></Link>
         
         </div>
 
