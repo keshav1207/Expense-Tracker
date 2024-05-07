@@ -11,6 +11,8 @@ export default function HomePage() {
   
   return (
     <>
+    <div className="container">
+
     <ToastContainer/>
     <div className="header-container">
     <div>Expense Tracker</div>
@@ -29,15 +31,14 @@ export default function HomePage() {
     </div>
     </div>
 
-    
-
-    
-
+  
     <div className="label-container">
     <Label/>
     </div>
 
   
+    </div>
+    
     </>
   )
 }
