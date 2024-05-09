@@ -21,6 +21,10 @@ export default function HomePage() {
     <div className="upper-body">
     <div className="chart-container">
     <DonutChart/>
+    <div className="label-container">
+    <Label/>
+    </div>
+    
     </div>
 
     <div className="form-container">
@@ -32,9 +36,7 @@ export default function HomePage() {
     </div>
 
   
-    <div className="label-container">
-    <Label/>
-    </div>
+   
 
   
     </div>
