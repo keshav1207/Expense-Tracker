@@ -47,7 +47,9 @@ const total =  transactions? getTotal(transactions): 0;
 
       options: {
        cutout:200,
-      
+       responsive: true,
+       maintainAspectRatio: false,
+     
       }
     };
   
@@ -58,6 +60,8 @@ const total =  transactions? getTotal(transactions): 0;
         <h3>Total</h3>
         <span>$ {!isLoading && total}</span>
         </div>
+
+       
         
         </>
     )

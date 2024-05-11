@@ -19,13 +19,13 @@ export default function HomePage() {
     </div>
 
     <div className="upper-body">
+
+
     <div className="chart-container">
+
     <DonutChart/>
-    <div className="label-container">
-    <Label/>
     </div>
-    
-    </div>
+
 
     <div className="form-container">
       <CreateExpenseForm/>
@@ -33,13 +33,22 @@ export default function HomePage() {
       <Link to={`/history/${userId}`}><button> Transaction History Page</button></Link>
     </div>
     </div>
-    </div>
 
-  
    
+    </div>
+
+    
+
+    <div className="label-container">
+    <Label/>
+    </div>
 
   
+
+
     </div>
+
+    
     
     </>
   )
