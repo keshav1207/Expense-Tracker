@@ -20,7 +20,7 @@ body {
   background-color:#f0f8ff;
   display: flex;
   flex-direction: column;
-
+  padding-top: 2rem;
   
   
 }
@@ -82,6 +82,100 @@ button:hover {
   height: auto;
 }
 
+.form-container{
+  width: 500px;
+  
+}
+
+
+.create-expense-form{
+  margin-top: 5rem;
+   margin-bottom: 1.5rem;
+   display: flex;
+   flex-direction: column;
+   gap: 1rem;
+   
+ }
+ 
+ 
+ 
+ 
+ .create-expense-form input, .create-expense-form select{
+   width: 500px;
+   padding: 1rem;
+   border: none;
+   border-radius: 0.5rem;
+   background-color: white;
+   box-shadow:0 0 10px 2px rgba(0,0,0,0.1);
+ }
+ 
+ #addTransaction{
+   text-align: center;
+   width: 200px;
+   height: 50px;
+   background-color: black;
+   color: white;
+   font-size: 1rem;
+   border: none;
+   border-radius: 10px;
+ }
+ 
+ 
+ 
+ .history-btn button{
+   text-align: center;
+   background-color: black;
+   color: white;
+   font-size: 1rem;
+   border: none;
+   border-radius: 10px;
+   padding: 1.5rem;
+ }
+
+
+@media screen and (min-width: 700px) and (max-width: 1023px) {
+
+  .upper-body{
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .chart-container{
+    margin-top: 2rem;
+    width: 450px;
+    height: 450px;
+
+  }
+
+    .form-container{
+      width: 300px;
+    }
+    .create-expense-form input, .create-expense-form select{
+      width: 300px
+    }
+
+    .label-container{
+      flex-direction: row;
+      margin-left: 200px;
+      
+    }
+
+    .container{
+      height: 100%;
+      
+      
+    }
+  
+    .body{
+      height: 100vh;
+    }
+
+    
+
+}
+
+
+
 
 @media screen and (min-width: 1024px) and (max-width: 1200px) {
   .chart-container{
@@ -92,6 +186,7 @@ button:hover {
 
   .container{
     height: 100%;
+    
     
   }
 
@@ -133,54 +228,9 @@ button:hover {
 
 
 
-.form-container{
-  width: 500px;
-  
-}
-
-.create-expense-form{
- margin-top: 5rem;
-  margin-bottom: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  
-}
 
 
 
-
-.create-expense-form input, .create-expense-form select{
-  width: 500px;
-  padding: 1rem;
-  border: none;
-  border-radius: 0.5rem;
-  background-color: white;
-  box-shadow:0 0 10px 2px rgba(0,0,0,0.1);
-}
-
-#addTransaction{
-  text-align: center;
-  width: 200px;
-  height: 50px;
-  background-color: black;
-  color: white;
-  font-size: 1rem;
-  border: none;
-  border-radius: 10px;
-}
-
-
-
-.history-btn button{
-  text-align: center;
-  background-color: black;
-  color: white;
-  font-size: 1rem;
-  border: none;
-  border-radius: 10px;
-  padding: 1.5rem;
-}
 
 
 .table-container{
